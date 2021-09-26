@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <title>复合内容</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./js/indexWebHtml.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/index.css"/>
+</head>
+<body>
+<!-- 修改||添加数据 -->
+<div class="back">
+    <form action="" method="post">
+        <div style="text-align: right;">X</div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">ID：</label>
+            <input type="email" class="form-control" id="exampleInputId" placeholder="ID" name="name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">姓名：</label>
+            <input type="email" class="form-control" id="exampleInputName" placeholder="姓名" name="name">
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="sex" id="sex1" value="男" checked="checked">男
+            </label>
+            <label>
+                <input type="radio" name="sex" id="sex0" value="女">女
+            </label>
+        </div>
+        <button type="button" class="btn btn-warning">提交</button>
+    </form>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <!-- 表格标题 -->
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <!-- 表格内容 -->
+        <tbody class=""></tbody>
+        <!-- 表格尾部 -->
+        <tfoot>
+        <tr>
+            <th colspan="4">
+                <button type="button" class="btn btn-info">添加</button>
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+
+</div>
+</body>
+</html>

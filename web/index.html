@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+    <h1>首页</h1>
+    <button id="btnLogout">退出登录</button>
+    <script>
+        $.ajax({
+            url:"http://localhost:8080/login/isLogin",
+            method:"get",
+            success:(data)=> {
+                if (data.code != 200) {
+                    location.href = "http://localhost:8080/login.html";
+                }
+            }
+        })
+        $(()=> {
+            $("#btnLogout").click(()=> {
+                $.ajax({
+                    url:"http://localhost:8080/login/loginOut",
+                    method:"get",
+                    success:(data)=> {
+                        location.href = "http://localhost:8080/login.html";
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

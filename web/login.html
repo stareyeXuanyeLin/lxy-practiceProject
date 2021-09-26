@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<title>登录页</title>
+		<link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.1/css/bootstrap.min.css" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+	</head>
+	<body>
+		<form id="form_1">
+			<div>账号：<input type="text" name="uname" autocomplete="off" /></div>
+			<div>密码：<input type="password" name="pass" /></div>
+			<button type="button" id="butt_1">登录</button>
+		</form>
+		<button id="butt_2">jwt登录</button>
+		<script type="text/javascript">
+			$(()=> {
+				$("#butt_2").click((e)=> {
+					$.ajax({
+						url:"http://localhost:8080/jwt/apiLogin",
+						method:"get",
+						data:null,
+						success:(data)=> {
+							console.log(data);
+							$.ajax({
+								url:"http://localhost:8080/jwt/getUser",
+								method:"get",
+								beforeSend:(XHR)=> {
+									XHR.setRequestHeader("Authorization",`Bearer ${data}`);
+								},
+								success:(data)=> {
+									console.log(data);
+								}
+							})
+						}
+					})
+				})
+				$("#butt_1").click((e)=> {
+					e.preventDefault();
+					$.ajax({
+						url:"http://localhost:8080/login/login",
+						method:"post",
+						data:{
+							uname:$("input:eq(0)").val(),
+							pass:$("input:eq(1)").val()
+						},
+						success:(data)=> {
+							if (data.code===200) {
+								location.href = "http://localhost:8080/dataWeb.html";
+							} else {
+								alert("登录失败！");
+								location.reload();
+							}
+						}
+					})
+				})
+			})
+		</script>
+	</body>
+</html>

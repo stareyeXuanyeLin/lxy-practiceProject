@@ -1,0 +1,21 @@
+th,td {
+	text-align: center;
+}
+form {
+	width: 400px;
+	position: absolute;
+	background-color: #ffffff;
+	left: 50%;
+	margin-left: -200px;
+	top: 70px;
+}
+body {
+	position: relative;
+}
+.back {
+	position: absolute;
+	display: none;
+	width: 100%;
+	height: 1000px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
