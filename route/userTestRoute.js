@@ -1,41 +1,17 @@
 // 引入路由
-let express = require("express");
+const express = require("express");
 // 创建用于返回的路由对象集
-let router = express.Router();
-// 导入持久层
-const UserTestDao = require("../dao/UserTestDao");
+const router = express.Router();
+// 导入数据库用户表操作模块
+const userDataHandle = require("../handle/userDataHandle")
 
 // 获取表的所有数据
-router.get("/getUserTestAll",(req,res)=> {
-	UserTestDao.getUserTestAll().then((data)=> {
-		res.send(data);
-	}).catch((err)=> {
-		console.log(err);
-	})
-})
+router.get("/getUserTestAll",userDataHandle.getUserAll)
 // 根据ID删除数据
-router.post("/deleteUserTestByID",(req,res)=> {
-	UserTestDao.deleteUserTestByID(req.body.id).then((data)=> {
-		res.send(data);
-	}).catch((err)=> {
-		console.log(err);
-	})
-})
+router.post("/deleteUserTestByID",userDataHandle.deleteUserById)
 // 根据ID修改数据
-router.post("/updateUserTestByID",(req,res)=> {
-	UserTestDao.updateUserTestByID(req.body).then((data)=> {
-		res.send(data);
-	}).catch((err)=> {
-		console.log(err);
-	})
-})
+router.post("/updateUserTestByID",userDataHandle.updateUserById)
 // 向表中插入数据
-router.post("/insertUserTest",(req,res)=> {
-	UserTestDao.insertUserTest(req.body).then((data)=> {
-		res.send(data);
-	}).catch((err)=> {
-		console.log(err);
-	})
-})
+router.post("/insertUserTest",userDataHandle.insertUser)
 
 module.exports = router;

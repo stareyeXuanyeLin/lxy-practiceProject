@@ -5,9 +5,12 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "jquery": "^3.6.0",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "bcryptjs": "^2.4.3",
+    "cryptr": "^6.0.2",
     "express": "^4.17.1",
     "express-jwt": "^6.1.0",
     "express-session": "^1.17.2",

@@ -1,0 +1,39 @@
+body {
+    background-image: url(../img/loginBackdrop.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/*文本居中*/
+.txt-cen {
+    text-align: center;
+}
+/*登录表单大*/
+.layui-col-md4.layui-col-md-offset4.layui-bg-gray {
+    border-radius: 40px;
+    margin-top: 160px;
+}
+/*登录表单小*/
+.login-form>div:nth-child(1) {
+    font-size: 30px;
+    color: #19B9E7;
+}
+.login-form>div:nth-child(5) {
+    text-align: right;
+    margin-right: 5px;
+    padding-bottom: 20px;
+}
+.login-form>div {
+    margin-top: 20px;
+}
+/*账号输入栏图标*/
+.login-form .layui-icon {
+    text-align: center;
+    height: 38px;
+    line-height: 38px;
+    background-color: #FFFFFF;
+    border: 1px solid #eeeeee;
+    border-right: 0;
+}
+.login-form .layui-icon+div>input {
+    border-left: 0;
+}

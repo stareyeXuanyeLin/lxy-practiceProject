@@ -9,14 +9,15 @@ function getDataBaseAll() {
 		dataType: "json",
 		success: (data) => {
 			let butt = "<button type='button' class='btn btn-success'>修改</button><button type='button' class='btn btn-danger'>删除</button>";
+			let tbody = $("tbody");
 			// 删除表身所有子元素
-			$("tbody").empty();
+			$(tbody).empty();
 			// 重新添加表身
 			for (let i = 0; i < data.length; i++) {
 				let th1 = `<th>${data[i].id}</th>`;
 				let th2 = `<th>${data[i].name}</th>`;
 				let th3 = `<th>${data[i].sex}</th>`;
-				$("tbody").append(`<tr>${th1+th2+th3}<th>${butt}</th></tr>`);
+				$(tbody).append(`<tr>${th1+th2+th3}<th>${butt}</th></tr>`);
 			}
 		}
 	})
@@ -73,26 +74,25 @@ $(() => {
 			$(".back").hide();
 		}
 		if ($(ele).prop("nodeName") === "BUTTON" && $(ele).text() === "提交") {
+			let exampleInputId = $("#exampleInputId");
+			let exampleInputName = $("#exampleInputName");
 			let userTest = {
-				id: $("#exampleInputId").val()?$("#exampleInputId").val():$("#exampleInputId").prop("placeholder"),
-				name: $("#exampleInputName").val()?$("#exampleInputName").val():$("#exampleInputName").prop("placeholder"),
+				id: $(exampleInputId).val()?$(exampleInputId).val():$(exampleInputId).prop("placeholder"),
+				name: $(exampleInputName).val()?$(exampleInputName).val():$(exampleInputName).prop("placeholder"),
 				sex: $("input[name='sex']:checked").val()
 			}
+			let route = undefined;
 			if ($(ele).prop("id")==="update") {
-				$.ajax({
-					type: "post",
-					url: "http://localhost:8080/user/updateUserTestByID",
-					data:userTest,
-					dataType: "josn",
-				})
+				route = "updateUserTestByID";
 			} else if ($(ele).prop("id")==="add") {
-				$.ajax({
-					type: "post",
-					url: "http://localhost:8080/user/insertUserTest",
-					data:userTest,
-					dataType: "josn",
-				})
+				route = "insertUserTest";
 			}
+			$.ajax({
+				type: "post",
+				url: `http://localhost:8080/user/${route}`,
+				data:userTest,
+				dataType: "josn",
+			});
 			getDataBaseAll();
 			$(".back").hide();
 		}

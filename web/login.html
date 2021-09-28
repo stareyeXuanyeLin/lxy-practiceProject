@@ -2,59 +2,37 @@
 <html lang="">
 	<head>
 		<meta charset="utf-8">
-		<title>登录页</title>
-		<link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.1/css/bootstrap.min.css" />
+		<title>登录</title>
+		<link rel="stylesheet" href="./layui/css/layui.css">
+		<link rel="stylesheet" href="./css/login.css">
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<script src="./layui/layui.js"></script>
+		<script src="./js/login.js"></script>
 	</head>
 	<body>
-		<form id="form_1">
-			<div>账号：<input type="text" name="uname" autocomplete="off" /></div>
-			<div>密码：<input type="password" name="pass" /></div>
-			<button type="button" id="butt_1">登录</button>
-		</form>
-		<button id="butt_2">jwt登录</button>
-		<script type="text/javascript">
-			$(()=> {
-				$("#butt_2").click((e)=> {
-					$.ajax({
-						url:"http://localhost:8080/jwt/apiLogin",
-						method:"get",
-						data:null,
-						success:(data)=> {
-							console.log(data);
-							$.ajax({
-								url:"http://localhost:8080/jwt/getUser",
-								method:"get",
-								beforeSend:(XHR)=> {
-									XHR.setRequestHeader("Authorization",`Bearer ${data}`);
-								},
-								success:(data)=> {
-									console.log(data);
-								}
-							})
-						}
-					})
-				})
-				$("#butt_1").click((e)=> {
-					e.preventDefault();
-					$.ajax({
-						url:"http://localhost:8080/login/login",
-						method:"post",
-						data:{
-							uname:$("input:eq(0)").val(),
-							pass:$("input:eq(1)").val()
-						},
-						success:(data)=> {
-							if (data.code===200) {
-								location.href = "http://localhost:8080/dataWeb.html";
-							} else {
-								alert("登录失败！");
-								location.reload();
-							}
-						}
-					})
-				})
-			})
-		</script>
+		<!--登录表单-->
+		<div class="layui-col-md4 layui-col-md-offset4 layui-bg-gray">
+			<div class="layui-col-md10 layui-col-md-offset1 login-form">
+				<div class="txt-cen">后台管理系统</div>
+				<!--账号输入栏-->
+				<div class="layui-row">
+					<label class="layui-icon layui-icon-username layui-col-md1" for="layer-uname"></label>
+					<div class="layui-col-md11">
+						<input id="layer-uname" type="text" name="title" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<!--密码输入-->
+				<div class="layui-row">
+					<label class="layui-icon layui-icon-password layui-col-md1" for="layer-password"></label>
+					<div class="layui-col-md11">
+						<input id="layer-password" type="text" name="title" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div>
+					<button id="butt-login" type="button" class="layui-btn layui-btn-normal layui-btn-fluid">登录</button>
+				</div>
+				<div><a href="./register.html">去注册账号</a></div>
+			</div>
+		</div>
 	</body>
 </html>
